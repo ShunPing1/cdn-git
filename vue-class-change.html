@@ -1,18 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>change class</title>
     <style>
-        .hot{
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        hr{
+            margin: 10px 0;
+        }
+        .hot {
             color: #f00;
         }
-        .cold{
+
+        .cold {
             color: #00f;
+        }
+
+        .card-area {
+            width: 100%;
+            /* height: 300px; */
+            /* background-color: #faa; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .card {
+            width: 380px;
+            /* background-color: #fff; */
+            display: flex;
+            flex-wrap: wrap;
+            border: 5px double #000;
+            padding: 10px;
+        }
+
+        .card img,
+        .card .textArea {
+            width: 50%;
+        }
+
+        .textArea {
+            font-size: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .textArea p {
+            margin: 0;
         }
     </style>
 </head>
+
 <body>
 
     <div id="app">
@@ -23,9 +69,24 @@
         <button type="button" @click="weather += 5">增加溫度</button>
         <button type="button" @click="weather -= 5">減少溫度</button>
         <hr>
-        
+        <!-- v-for迴圈應用 -->
+        <div class="card-area">
+            <div class="card" v-for="pokemon in pokemons" :key="pokemon.id">
+                <!-- <img :src="pokemonImgPath" alt=""> -->
+                <img :src="changePokemonImg(pokemon.id,pokemon.level)" alt="">
+                <div class="textArea">
+                    <p>Name:{{pokemon.name}}</p>
+                    <p>Level:{{pokemon.level}}</p>
+                    <button type="button" @click="pokemon.level++">Add Level</button>
+                    <button type="button" @click="pokemon.level--">Reduce Level</button>
+
+                </div>
+            </div>
+            
+        </div>
+
     </div>
-    
+
 
 
 
@@ -37,20 +98,49 @@
             data() {
                 return {
                     weather: 20,
+                    level:1,
+                    pokemonImgPath: './img/pokemon1-1.png',
+                    pokemons: [{
+                        id: 1,
+                        name: 'Charmander',
+                        level: 1,
+
+
+                    }, {
+                        id: 2,
+                        name: 'Bulbasaur',
+                        level: 1,
+
+                    }, {
+                        id: 3,
+                        name: 'Squirtle',
+                        level: 1,
+
+                    }],
                 }
             },
             methods: {
-                changeWeather(){
+                changeWeather() {
                     if (this.weather >= 30) {
                         return 'hot';
-                    }else if(this.weather <= 10){
+                    } else if (this.weather <= 10) {
                         return 'cold';
-                    }else{
+                    } else {
                         return '';
                     }
-                }
+                },
+                changePokemonImg(id, lv){
+                    if (lv <= 10) {
+                     return   `./img/pokemon${id}-1.png`;
+                    }else if (lv <= 20) {
+                     return   `./img/pokemon${id}-2.png`;
+                    }else if (lv <= 30) {
+                     return   `./img/pokemon${id}-3.png`;
+                    }
+                }, 
             },
         }).mount('#app');
     </script>
 </body>
+
 </html>
