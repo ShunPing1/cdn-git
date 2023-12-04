@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        img{
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,10 +33,19 @@
         <button type="button" v-on:click="reset()">歸零</button>
         <hr>
         <!-- v-model(雙向綁定)，通常作用於input標籤 -->
+        雙向綁定:
+        <br>
         <input type="text" v-model="inputText">
-        {{inputText}}
+        <br>
+        <input type="text" :value="inputText" readonly>
+        
         <hr>
-        <!-- v-if判斷式 -->
+        <!-- v-if 判斷式 -->
+        <div v-if="weather <= 5">Cold</div>
+        <div v-else>Hot</div>
+        <hr>
+        <!-- v-bind 屬性綁定 -->
+        <img :src="imgPath" alt="" @click="changeImg()">
     </div>
 
 
@@ -50,6 +64,9 @@
                     message: 'Hello Vue!',
                     count: 0,
                     inputText: '',
+                    weather: 6,
+                    imgPath: './img/sticker.png',
+                    imgCountNum: 0,
                 }
             },
 
@@ -58,7 +75,20 @@
                 reset: function(){
                     this.count = 0;
                     console.log(this);
-                }
+                },
+                changeImg(){
+
+                    if (this.imgCountNum == 0) {
+                        this.imgPath = './img/sticker2.png';
+                        this.imgCountNum = 1;
+                    }else if(this.imgCountNum == 1){
+                        this.imgPath = './img/sticker3.png';
+                        this.imgCountNum = 2;
+                    }else{
+                        this.imgPath = './img/sticker.png';
+                        this.imgCountNum = 0;
+                    }
+                },
             },
         }).mount('#app') //綁定id為app的元素
     </script>
