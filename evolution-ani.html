@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #ccc;
+        }
+        img{
+            width: 300px;
+            /* filter: grayscale(100%); */
+            
+
+            
+        }
+
+        .ani{
+            animation: changeColor 3s  infinite;
+        }
+        
+
+        @keyframes changeColor{
+            0%,
+            100%{
+                filter: brightness(1) ;
+            }
+            50%{
+                filter: brightness(10) drop-shadow(20px 20px 30px  #fff);
+            }
+        };
+    </style>
+</head>
+<body>
+    <img src="./img/pokemon1-1.png" alt="" >
+</body>
+</html>
