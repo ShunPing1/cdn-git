@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    
+    
+    <!-- 使用Vue cdn的工具書 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    
+    <!-- 直接使用變數名稱驅動DOM元素內容(資料驅動) -->
+    <div id="app">{{ message }}</div>
+
+<script>
+// 宣告變數的概念
+  const { createApp } = Vue
+  console.log(Vue);
+  
+  //經由上方宣告變數才能使用 createApp 
+  createApp({
+    data() {
+      return {
+        message: 'Hello Vue!'
+      }
+    }
+  }).mount('#app') //綁定id為app的元素
+</script>
+</body>
+</html>
