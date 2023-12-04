@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
-    
-    
-    
+
+
+
+
     <!-- 使用Vue cdn的工具書 -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    
-    
-    <!-- 直接使用變數名稱驅動DOM元素內容(資料驅動) -->
-    <div id="app">{{ message }}</div>
 
-<script>
-// 宣告變數的概念
-  const { createApp } = Vue
-  console.log(Vue);
-  
-  //經由上方宣告變數才能使用 createApp 
-  createApp({
-    data() {
-      return {
-        message: 'Hello Vue!'
-      }
-    }
-  }).mount('#app') //綁定id為app的元素
-</script>
+
+    <!-- 直接使用變數名稱驅動DOM元素內容(資料驅動) -->
+    <div id="app">
+        {{ message }}
+        <div>數字:{{ count }}</div>
+        <!-- 使用簡寫的方式達成事件綁定，直接在監聽事件中寫JS -->
+        <button type="button" @click="count++">增加</button>
+        <!-- 使用全寫的方式達成事件綁定，直接在監聽事件中寫JS- -->
+        <button type="button" v-on:click="count--">減少</button>
+        <!-- 在監聽事件中加入function的方式達成效果 -->
+        <button type="button" v-on:click="reset()">歸零</button>
+        <hr>
+        <!-- v-model(雙向綁定)，通常作用於input標籤 -->
+        <input type="text" v-model="inputText">
+        {{inputText}}
+        <hr>
+        <!-- v-if判斷式 -->
+    </div>
+
+
+
+
+    <script>
+        // 宣告變數的概念
+        const { createApp } = Vue
+
+        //經由上方宣告變數才能使用 createApp 
+        createApp({
+            // 宣告資料分區
+            data() {
+                // 分區內的值一定要回傳才有效果
+                return {
+                    message: 'Hello Vue!',
+                    count: 0,
+                    inputText: '',
+                }
+            },
+
+            // 函式分區
+            methods: {
+                reset: function(){
+                    this.count = 0;
+                    console.log(this);
+                }
+            },
+        }).mount('#app') //綁定id為app的元素
+    </script>
 </body>
+
 </html>
