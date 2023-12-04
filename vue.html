@@ -36,15 +36,21 @@
         雙向綁定:
         <br>
         <input type="text" v-model="inputText">
-        <br>
-        <input type="text" :value="inputText" readonly>
-        
+        <div>
+            <input type="text" :value="inputText" readonly>
+        </div>
         <hr>
         <!-- v-if 判斷式 -->
-        <div v-if="weather <= 5">Cold</div>
+        <p>v-if判斷式:</p>
+        <div>溫度:{{ weather }}</div>
+        <button type="button" @click="weather += 5">增加溫度</button>
+        <button type="button" @click="weather -= 5">減少溫度</button>
+        <div v-if="weather < 19">Cold</div>
+        <div v-else-if="weather <= 30">Comfortable</div>
         <div v-else>Hot</div>
         <hr>
         <!-- v-bind 屬性綁定 -->
+        <p>v-bind屬性綁定:</p>
         <img :src="imgPath" alt="" @click="changeImg()">
     </div>
 
@@ -64,7 +70,7 @@
                     message: 'Hello Vue!',
                     count: 0,
                     inputText: '',
-                    weather: 6,
+                    weather: 20,
                     imgPath: './img/sticker.png',
                     imgCountNum: 0,
                 }

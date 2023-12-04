@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>change class</title>
+    <style>
+        .hot{
+            color: #f00;
+        }
+        .cold{
+            color: #00f;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- bind改變CSS第一種方式 -->
+        <!-- <h1 :class="{'hot': weather >= 30,'cold': weather <= 10}">溫度:{{weather}}</h1> -->
+        <!-- bind改變CSS第二種方式，使用fn -->
+        <h1 :class="changeWeather()">溫度:{{weather}}</h1>
+        <button type="button" @click="weather += 5">增加溫度</button>
+        <button type="button" @click="weather -= 5">減少溫度</button>
+        <hr>
+        
+    </div>
+    
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+        console.log(Vue);
+        createApp({
+            data() {
+                return {
+                    weather: 20,
+                }
+            },
+            methods: {
+                changeWeather(){
+                    if (this.weather >= 30) {
+                        return 'hot';
+                    }else if(this.weather <= 10){
+                        return 'cold';
+                    }else{
+                        return '';
+                    }
+                }
+            },
+        }).mount('#app');
+    </script>
+</body>
+</html>
